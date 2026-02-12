@@ -1,2 +1,22 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.urolovshohjahon.reactnativexprinter">
+
+  <!-- USB -->
+  <uses-feature android:name="android.hardware.usb.host" />
+
+  <!-- Bluetooth -->
+  <uses-permission android:name="android.permission.BLUETOOTH" />
+  <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+  <!-- Android 12+ -->
+  <uses-permission
+    android:name="android.permission.BLUETOOTH_CONNECT"
+    android:required="false" />
+  <uses-permission
+    android:name="android.permission.BLUETOOTH_SCAN"
+    android:required="false" />
+
+  <!-- Network printer -->
+  <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>

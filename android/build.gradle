@@ -17,6 +17,9 @@ buildscript {
   repositories {
     google()
     mavenCentral()
+    flatDir {
+        dirs 'libs' // Bu qator 'android/libs' papkasini qidiradi
+    }
   }
 
   dependencies {
@@ -33,7 +36,7 @@ apply plugin: "kotlin-android"
 apply plugin: "com.facebook.react"
 
 android {
-  namespace "com.urolov.reactnativexprinter"
+  namespace "com.urolovshohjahon.reactnativexprinter"
 
   compileSdkVersion getExtOrDefault("compileSdkVersion")
 
@@ -64,4 +67,5 @@ android {
 
 dependencies {
   implementation "com.facebook.react:react-android"
+  implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
 }

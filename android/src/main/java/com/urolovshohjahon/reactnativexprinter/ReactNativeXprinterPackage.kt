@@ -1,4 +1,4 @@
-package com.urolov.reactnativexprinter
+package com.urolovshohjahon.reactnativexprinter
 
 import com.facebook.react.BaseReactPackage
 import com.facebook.react.bridge.NativeModule

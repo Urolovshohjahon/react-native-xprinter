@@ -1,7 +1,7 @@
 {
-  "name": "@urolov/react-native-xprinter",
-  "version": "0.1.0",
-  "description": "Package for controlling xprinters",
+  "name": "@urolovshohjahon/react-native-xprinter",
+  "version": "0.1.7",
+  "description": "React Native library for Xprinter - Support Bluetooth, USB, and Ethernet (TCP/IP) printing",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -18,6 +18,7 @@
     "android",
     "ios",
     "cpp",
+    "android/libs",
     "*.podspec",
     "react-native.config.js",
     "!ios/build",
@@ -32,18 +33,26 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace @urolov/react-native-xprinter-example",
+    "example": "yarn workspace @urolovshohjahon/react-native-xprinter-example",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "prepare": "bob build",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "test": "jest",
-    "release": "release-it --only-version"
+    "release": "release-it --only-version",
+    "build": "bob build",
+    "prepublishOnly": "bob build"
   },
   "keywords": [
     "react-native",
-    "ios",
-    "android"
+    "xprinter",
+    "thermal-printer",
+    "pos-printer",
+    "bluetooth-printer",
+    "esc-pos",
+    "usb-printer",
+    "urolovshohjahon",
+    "uzbekistan-pos"
   ],
   "repository": {
     "type": "git",
@@ -78,7 +87,7 @@
     "prettier": "^2.8.8",
     "react": "19.2.0",
     "react-native": "0.83.0",
-    "react-native-builder-bob": "^0.40.13",
+    "react-native-builder-bob": "^0.40.18",
     "release-it": "^19.0.4",
     "turbo": "^2.5.6",
     "typescript": "^5.9.2"
@@ -114,7 +123,7 @@
     "type": "modules",
     "jsSrcsDir": "src",
     "android": {
-      "javaPackageName": "com.urolov.reactnativexprinter"
+      "javaPackageName": "com.urolovshohjahon.reactnativexprinter"
     }
   },
   "prettier": {

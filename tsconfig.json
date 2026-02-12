@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "@urolov/react-native-xprinter": ["./src/index"]
+      "@urolovshohjahon/react-native-xprinter": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

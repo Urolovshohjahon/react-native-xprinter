@@ -1,4 +1,4 @@
-package urolov.reactnativexprinter.example
+package urolovshohjahon.reactnativexprinter.example
 
 import android.app.Application
 import com.facebook.react.PackageList
