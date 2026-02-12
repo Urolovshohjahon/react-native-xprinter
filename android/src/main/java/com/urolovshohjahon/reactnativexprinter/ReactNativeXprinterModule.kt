@@ -329,7 +329,7 @@ class ReactNativeXprinterModule(reactContext: ReactApplicationContext) : ReactCo
 
 
     @ReactMethod
-    fun printTextWithStyle(isChinese: Boolean, str: String,align: Int, attribute:Int,size:Int ) {
+    fun printTextWithStyle( str: String, isChinese: Boolean, align: Int, attribute:Int,size:Int ) {
         if(printer!=null){
             printer!!.setAlignment(align)
             printer!!.setTextStyle(attribute, size or (size shl 4))

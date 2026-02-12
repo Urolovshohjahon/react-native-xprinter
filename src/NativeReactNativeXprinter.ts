@@ -15,10 +15,10 @@ export interface Spec extends TurboModule {
   // Printing & Styles
   printText(str: string): void;
   printTextWithStyle(
-    isChinese: boolean,
     str: string,
+    isChinese: boolean,
     align: number,
-    attribute: number,
+    font: number,
     size: number
   ): void;
   selectCodePage(code: number): void;

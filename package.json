@@ -1,6 +1,6 @@
 {
   "name": "@urolovshohjahon/react-native-xprinter",
-  "version": "0.1.7",
+  "version": "0.1.12",
   "description": "React Native library for Xprinter - Support Bluetooth, USB, and Ethernet (TCP/IP) printing",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",

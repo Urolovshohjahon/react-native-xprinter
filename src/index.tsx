@@ -1,7 +1,42 @@
 import ReactNativeXprinter from './NativeReactNativeXprinter';
 
-// Modulni qulayroq o'zgaruvchiga olamiz
 const Module = ReactNativeXprinter;
+
+// --- Constants ---
+export const PrinterConstants = {
+  ALIGN: {
+    LEFT: 0,
+    CENTER: 1,
+    RIGHT: 2,
+  },
+  FONT: {
+    DEFAULT: 0,
+    FONTB: 1,
+    BOLD: 8,
+    REVERSE: 16,
+    UNDERLINE: 128,
+    UNDERLINE2: 256,
+  },
+  SIZE: {
+    NORMAL: 0,
+    BIG: 1,
+    BIGGER: 2,
+  },
+} as const;
+
+// --- Types ---
+type AlignType = keyof typeof PrinterConstants.ALIGN;
+type FontibuteType = keyof typeof PrinterConstants.FONT;
+type SizeType = keyof typeof PrinterConstants.SIZE;
+
+interface PrintOptions {
+  isChinese?: boolean;
+  align?: AlignType | number;
+  font?: FontibuteType | number;
+  size?: SizeType | number;
+}
+
+// --- Methods ---
 
 export function registerUsbFilters(): void {
   return Module?.registerUsbFilters();
@@ -23,8 +58,7 @@ export function closeConnection(): void {
   return Module?.closeConnection();
 }
 
-// Promise qaytaruvchi metodlarda xatolikni mana bunday hal qilamiz:
-export function searchBTDevices(): Promise<Object[]> {
+export function searchBTDevices(): Promise<any[]> {
   if (!Module) return Promise.reject('Module not found');
   return Module.searchBTDevices();
 }
@@ -33,14 +67,38 @@ export function printText(str: string): void {
   return Module?.printText(str);
 }
 
+/**
+ * Print text with style using an options object
+ * @param str - The text to print
+ * @param options - Optional: { isChinese, align, font, size }
+ */
 export function printTextWithStyle(
-  isChinese: boolean,
   str: string,
-  align: number,
-  attribute: number,
-  size: number
+  options: PrintOptions = {}
 ): void {
-  return Module?.printTextWithStyle(isChinese, str, align, attribute, size);
+  // Default qiymatlarni belgilaymiz
+  const {
+    isChinese = false,
+    align = 'LEFT',
+    font = 'DEFAULT',
+    size = 'NORMAL',
+  } = options;
+
+  // Qiymatlarni raqamga o'girish
+  const finalAlign =
+    typeof align === 'string' ? PrinterConstants.ALIGN[align] : align;
+  const finalFont =
+    typeof font === 'string' ? PrinterConstants.FONT[font] : font;
+  const finalSize =
+    typeof size === 'string' ? PrinterConstants.SIZE[size] : size;
+
+  return Module?.printTextWithStyle(
+    str,
+    isChinese,
+    finalAlign,
+    finalFont,
+    finalSize
+  );
 }
 
 export function selectCodePage(code: number): void {
@@ -99,4 +157,5 @@ export default {
   cutPaper,
   openCashBox,
   makeCustomSound,
+  PrinterConstants,
 };

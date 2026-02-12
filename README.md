@@ -1,81 +1,88 @@
 # @urolovshohjahon/react-native-xprinter
 
-Package for controlling xprinters
+🚀 High-performance React Native library for Xprinter thermal printers.  
+Supports Bluetooth, USB, and Ethernet (TCP/IP) connections using the modern TurboModule architecture.
+
+## Features
+
+- Bluetooth, USB (Android), and Network (TCP/IP) support
+- Fast native bridge with TurboModules
+- Text printing with styles
+- QR code & barcode printing
+- Image printing from URL
+- Paper cut, cash drawer, and buzzer support
 
 ## Installation
 
+```sh
 npm install @urolovshohjahon/react-native-xprinter
-
-# yoki
-
+# or
 yarn add @urolovshohjahon/react-native-xprinter
+
+```
 
 ## Usage
 
-```js
+```sh
 import XPrinter from '@urolovshohjahon/react-native-xprinter';
 
-// --- USB orqali ulanish ---
-// Avval USB ruxsatnomalarini filter qilish kerak
+// =======================
+// USB (Android)
+// =======================
+// Register filters first to handle USB permissions
 XPrinter.registerUsbFilters();
-// Keyin printerni ulaymiz
 XPrinter.connectUSB();
 
-// --- Bluetooth orqali ulanish ---
-// Avval yaqin atrofdagi paired (ulangan) qurilmalarni qidiramiz
+// =======================
+// Bluetooth
+// =======================
 const devices = await XPrinter.searchBTDevices();
-if (devices.length > 0) {
-  XPrinter.connectBt(devices[0].address); // MAC address orqali ulanish
+if (devices && devices.length > 0) {
+  XPrinter.connectBt(devices[0].address);
 }
 
-// --- Ethernet (Network/IP) orqali ulanish ---
-XPrinter.connectNet("192.168.1.100");
+// =======================
+// Ethernet (Network / IP)
+// =======================
+XPrinter.connectNet('192.168.1.100');
 
-// Oddiy matn chiqarish
-XPrinter.printText("Salom O'zbekiston!\n");
+// =======================
+// Printing
+// =======================
 
-// Stil berilgan matn (isChinese, matn, alignment, attribute, size)
-// alignment: 0-Left, 1-Center, 2-Right
-// size: 0-Normal, 1-DoubleHeight, 2-DoubleWidth
-XPrinter.printTextWithStyle(false, "ZIM MANAGER", 1, 0, 1);
+// Simple text
+XPrinter.printText('Hello World!\n');
 
-// Qog'ozni qirqish va Pul qutisini ochish
-XPrinter.cutPaper();
-XPrinter.openCashBox();
+// Styled text
+XPrinter.printTextWithStyle('PRO RECEIPT\n', {
+  align: 'CENTER',
+  font: 'BOLD',
+  size: 'BIG',
+});
 
-// QR Kod chiqarish
-XPrinter.printQRCode("https://t.me/shohjahon_urolov");
-
-// Test Barcode (Package ichidagi standart formatlar)
+// QR code & barcode
+XPrinter.printQRCode('https://t.me/urolovshjahon');
 XPrinter.printBarcode();
 
-
-await XPrinter.loadImageFromUrl("https://your-site.com/logo.png");
+// Print image from URL
+await XPrinter.loadImageFromUrl('https://your-site.com/logo.png');
 XPrinter.printBitmap();
 
+// Printer controls
+XPrinter.cutPaper();        // Partial paper cut
+XPrinter.openCashBox();     // Open cash drawer
+XPrinter.makeCustomSound(); // Trigger printer beep
+XPrinter.closeConnection(); // Disconnect
 
+```
 
-Metod,Parametr,Tavsif
-connectUSB(),-,USB orqali birinchi topilgan printerni ulaydi.
-connectBt(mac),string,MAC address orqali Bluetooth printerni ulaydi.
-connectNet(ip),string,IP orqali Ethernet printerni ulaydi.
-printText(text),string,Oddiy matn chiqaradi.
-printQRCode(str),string,Berilgan matndan QR kod yaratadi va chiqaradi.
-cutPaper(),-,Qog'ozni yarim qirqish (Partial cut).
-makeCustomSound(),-,Printerdan ovoz chiqaradi (Beep).
-closeConnection(),-,Joriy ulanishni uzadi.
+## Params
 
-## Contributing
-
-- [Development workflow](CONTRIBUTING.md#development-workflow)
-- [Sending a pull request](CONTRIBUTING.md#sending-a-pull-request)
-- [Code of conduct](CODE_OF_CONDUCT.md)
-
-## License
-
-MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+```sh
+| Option    | Type    | Values                                    | Default   |
+| --------- | ------- | ----------------------------------------- | --------- |
+| align     | string  | 'LEFT', 'CENTER', 'RIGHT'                 | 'LEFT'    |
+| font      | string  | 'DEFAULT', 'BOLD', 'UNDERLINE', 'REVERSE' | 'DEFAULT' |
+| size      | string  | 'NORMAL', 'BIG', 'BIGGER'                 | 'NORMAL'  |
+| isChinese | boolean | true, false                               | false     |
 ```
